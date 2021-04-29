@@ -1,0 +1,12 @@
+<div *ngIf="ngIfCondition" class="card-body d-inline-block" style="width:50%">
+    <div class="card bg-light-blue">
+        <img src="/assets/not-found.jpg" class="card-img-top">
+        <div class="card-body">
+            <h1 class="card-title">{{title}}</h1>
+            <div class="d-inline-block text-start">
+                <h3 *ngIf="!refreshNeeded">Click <a [routerLink]="route"><u>here</u></a> to return to home page.</h3>
+                <h3 *ngIf="refreshNeeded">Click <a [href]="refreshLink"><u>here</u></a> to refresh the page.</h3>
+            </div>
+        <div>
+    </div>
+</div>

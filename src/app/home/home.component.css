@@ -1,0 +1,27 @@
+.aspect-ratio-16-9 {
+    aspect-ratio: 16/9;
+}
+
+.bg-light-blue {
+    background-color: #b7e3e8;
+}
+
+/* @media screen and (max-width: 576px) {
+    .img-576S {
+        aspect-ratio: 16/9;
+    }
+}
+
+@media screen and (min-width: 576px) {
+    .img-576L {
+        aspect-ratio: 16/9;
+    }
+} */
+
+
+
+
+
+
+
+

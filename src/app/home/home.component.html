@@ -1,0 +1,23 @@
+<div>
+    <div class="card-header bg-light-blue">
+        <h1 class="text-center">{{pageTitle}}</h1>
+        <shared-pagination *ngIf="!hasError" [currentPage]="currentPage" [pageArray]="pageArray" (clicked)="goToNextPage($event)"></shared-pagination>
+    </div>
+    <div *ngIf="!hasError" class="card-body row justify-content-center">
+        <div *ngFor="let image of images" class="card bg-light-blue m-3 m-xs-3 m-sm-4 m-md-4 m-lg-3 m-xl-2 col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+            <img *ngIf="loading" src="/assets/spinner.gif" class="card-img-top aspect-ratio-16-9">
+            <img class="card-img-top aspect-ratio-16-9" [src]="image.download_url" alt="Card image cap" (load)="onLoad()" [hidden]="loading">
+            <div class="card-body text-center">
+            <h6 class="card-title">Photo ID: {{image.id}}</h6>
+              <a [routerLink]="['/image', image.id]" class="btn btn-primary">View</a>
+            </div>
+        </div>
+   </div>
+   <div *ngIf="!hasError" class="card-header bg-light-blue">
+        <shared-pagination [currentPage]="currentPage" [pageArray]="pageArray" (clicked)="goToNextPage($event)"></shared-pagination>
+   </div>
+   <div *ngIf="hasError" class="text-center"> 
+       <shared-not-found [title]="'Error Getting Images'" [ngIfCondition]="hasError" [refreshNeeded]="true" [refreshLink]="'./page/' + currentPage"></shared-not-found>
+   </div>
+</div>
+

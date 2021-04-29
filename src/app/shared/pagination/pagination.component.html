@@ -1,0 +1,9 @@
+<nav>
+    <ul class="pagination justify-content-center mt-3 mb-3">
+    <li class="page-item"><a class="page-link" (click)="buttonClicked(currentPage - 1)" role="button">Previous</a></li>
+    <li *ngFor="let p of pageArray; let page = index" class="page-item" [ngClass]="{'active': page + 1 === currentPage }">
+        <a class="page-link" (click)="buttonClicked(page + 1)" role="button">{{page + 1}}</a>
+    </li>
+    <li class="page-item"><a class="page-link" (click)="buttonClicked(currentPage + 1)" role="button">Next</a></li>
+    </ul>
+</nav>

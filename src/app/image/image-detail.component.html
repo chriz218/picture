@@ -1,0 +1,38 @@
+<div>
+    <div class="card-header bg-light-blue">
+        <h1 class="text-center">{{pageTitle}}</h1>
+    </div>
+    <div class="text-center">
+        <div *ngIf="image && !hasError" class="card-body d-inline-block" style="width:50%">
+            <div class="card bg-light-blue">
+                <img *ngIf="loading" src="/assets/spinner.gif" class="card-img-top">
+                <img class="card-img-top" [src]="imageUrl" (load)="onLoad()" [hidden]="loading">
+                <div class="card-body">
+                    <h1 class="card-title"><u>Image Information</u></h1>
+                    <div class="d-inline-block text-start">
+                        <h3>Image ID: {{image.id}}</h3>
+                        <h3>Taken by: {{image.author}}</h3>
+                        <h3>Maximum Height: {{image.height}}</h3>
+                        <h3>Maximum Width: {{image.width}}</h3>
+                        <h3>Current Blur Degree: {{blurDegree}}</h3>
+                        <form [formGroup]="blurForm" (ngSubmit)="blurPicture()">
+                            <div class="form-group">
+                                <h3 class="d-inline-block me-3">Blur:</h3>
+                                <select formControlName="blurField" class="me-3" style="width:20%">
+                                    <option value="">-</option>
+                                    <option *ngFor="let b of blurArray; let blurDegree = index" [value]="blurDegree">{{blurDegree}}</option>
+                                </select>
+                                <button class="btn btn-primary" type="submit" [disabled]="!blurForm.valid" style="width:90px">Blur</button>
+                            </div>
+                        </form>
+                    </div>
+                <div>
+                    <button class="btn btn-outline-secondary m-2" style="width:130px" [routerLink]="['/page', pageNumber]">Back</button>
+                    <button class="btn btn-primary m-2" style="width:130px" (click)="downloadImage(imageUrl)" [disabled]="!canDownloadImage">{{downloadButtonText}}</button>
+                </div>
+                </div>
+            </div>
+        </div>
+        <shared-not-found [title]="'Image Not Found'" [ngIfCondition]="!image && hasError" [route]="['/page', '1']"></shared-not-found>
+   </div>
+</div>
